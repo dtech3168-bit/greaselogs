@@ -1,0 +1,4 @@
+# Allow images to be viewed, but never executed as PHP
+<FilesMatch "\.(php|phtml|php3|php4|php5|pl|py|cgi|sh)$">
+    Require all denied
+</FilesMatch>

@@ -1,0 +1,109 @@
+# ========================================
+# DeluxeSocial - CLEAN .htaccess (ADMIN FOLDER)
+# ========================================
+
+RewriteEngine On
+RewriteBase /admin/
+
+# ========================================
+# FORCE INDEX FILE
+# ========================================
+DirectoryIndex index.php index.html
+
+# ========================================
+# REMOVE TRAILING SLASHES
+# ========================================
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ $1 [R=301,L]
+
+# ========================================
+# CLEAN URL ROUTING
+# ========================================
+
+# Auth pages
+RewriteRule ^login$ pages/login.php [L,QSA]
+RewriteRule ^register$ pages/register.php [L,QSA]
+RewriteRule ^logout$ pages/logout.php [L,QSA]
+
+# Dashboard
+RewriteRule ^dashboard$ pages/dashboard.php [L,QSA]
+
+# Listings
+RewriteRule ^listings$ pages/listings.php [L,QSA]
+RewriteRule ^listing$ pages/listing.php [L,QSA]
+
+# Listing with ID
+RewriteRule ^listing/([0-9]+)$ pages/listing.php?id=$1 [L,QSA]
+
+# Wallet / Orders
+RewriteRule ^wallet$ pages/wallet.php [L,QSA]
+RewriteRule ^orders$ pages/orders.php [L,QSA]
+
+# Profile
+RewriteRule ^profile$ pages/profile.php [L,QSA]
+
+# Marketplace / categories
+RewriteRule ^marketplace$ pages/marketplace.php [L,QSA]
+RewriteRule ^category/([a-zA-Z0-9_-]+)$ pages/marketplace.php?platform=$1 [L,QSA]
+
+# Verify payment
+RewriteRule ^verify$ pages/verify_payment.php [L,QSA]
+
+# Forgot/reset password
+RewriteRule ^forgot-password$ pages/forgot-password.php [L,QSA]
+RewriteRule ^reset-password$ pages/reset-password.php [L,QSA]
+
+# ========================================
+# SECURITY - BLOCK SENSITIVE FOLDERS
+# ========================================
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^classes/ - [F,L]
+RewriteRule ^api/ - [F,L]
+
+# ========================================
+# BLOCK SENSITIVE FILE TYPES
+# ========================================
+<FilesMatch "\.(sql|env|log|bak|swp|git)$">
+    Require all denied
+</FilesMatch>
+
+# Block access to config files
+<FilesMatch "^(config|functions|Database)\.php$">
+    Require all denied
+</FilesMatch>
+
+# Block .htaccess itself
+<Files ".htaccess">
+    Require all denied
+</Files>
+
+# ========================================
+# DISABLE DIRECTORY LISTING
+# ========================================
+Options -Indexes
+
+# ========================================
+# PERFORMANCE (optional)
+# ========================================
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 7 days"
+    ExpiresByType application/javascript "access plus 7 days"
+    ExpiresByType image/jpeg "access plus 30 days"
+    ExpiresByType image/png "access plus 30 days"
+</IfModule>
+
+# ========================================
+# GZIP (optional)
+# ========================================
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/css
+    AddOutputFilterByType DEFLATE application/javascript
+</IfModule>
+
+# ========================================
+# ERROR PAGES
+# ========================================
+ErrorDocument 404 /admin/pages/404.php
+ErrorDocument 403 /admin/pages/403.php
+ErrorDocument 500 /admin/pages/500.php

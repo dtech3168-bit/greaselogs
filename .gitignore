@@ -1,0 +1,26 @@
+# Environment / secrets
+.env
+.env.*
+!.env.example
+
+# Local/server configuration
+includes/config.php
+
+# Logs
+error_log
+*.log
+
+# Hosting/server files
+.ftpquota
+
+# OS/editor files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+includes/config.php
+error_log
+.ftpquota
+# Local configuration
+includes/conf.php
