@@ -63,7 +63,13 @@ Greaselogs is a high-end marketplace for buying and selling social media account
 This project is licensed for use as a premium marketplace solution.
 
 ---
-Built  by Smartech Team.
+Developer
+Smart Wisdom
 
+Frontend Developer focused on building responsive, interactive web applications and digital products.
+
+GitHub: https://github.com/dtech3168-bit
+Portfolio: https://digitechcom.netlify.app
+under Smartech Fullstack Innovations 
 ## Visit site
 https://smartech.com.ng
